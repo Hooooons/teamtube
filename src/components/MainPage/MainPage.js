@@ -7,6 +7,8 @@ import { Col, Container, Row } from "react-bootstrap";
 
 const MainContainer = styled.div`
   /* border: 2px solid blue; */
+  padding-top:30px;
+  background:#fff;
 `;
 
 function MainPage() {
