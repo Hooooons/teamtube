@@ -21,7 +21,7 @@ const GlobalContainer = styled.div`
 
   /* $breakpointMedium: 1224px;
   $breakpointSmall: 520px; */
-
+  /*  */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
