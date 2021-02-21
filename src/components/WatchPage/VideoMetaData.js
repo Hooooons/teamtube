@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 import numeral from "numeral";
+import ShowMoreText from "react-show-more-text";
 
 import { MdThumbUp, MdThumbDown } from "react-icons/md";
 
@@ -48,6 +49,13 @@ const Description = styled.div`
   font-size: 0.9rem;
   white-space: pre-line;
   border-bottom: 0.2px solid #4c4c4c;
+  .showMoreText {
+    text-decoration: none;
+    display: block;
+    margin: 1rem 0;
+    color: #fff;
+    font-weight: 500;
+  }
 `;
 
 function VideoMetaData() {
@@ -104,11 +112,20 @@ function VideoMetaData() {
         </button>
       </Channel>
       <Description>
-        영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상
-        설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상
-        설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상
-        설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상
-        설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명
+        <ShowMoreText
+          lines={3}
+          more="SHOW MORE"
+          less="SHOW LESS"
+          anchorClass="showMoreText"
+          expanded={false}
+        >
+          영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상
+          설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상
+          설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상
+          설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상
+          설명영상 설명영상 설명영상 설명영상 설명영상 설명영상 설명영상
+          설명영상 설명영상 설명영상 설명
+        </ShowMoreText>
       </Description>
     </MainContainer>
   );
