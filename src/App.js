@@ -10,7 +10,8 @@ import Login from "./components/NavBar/LoginSignUp/Login";
 import SignUp from "./components/NavBar/LoginSignUp/SignUp";
 import HotVideo from "./components/SidePanel/HotVideo/HotVideo";
 import Subscribe from "./components/SidePanel/Subscribe/Subscribe";
-import Upload from './components/NavBar/Upload/Upload';
+import WatchPage from "./components/WatchPage/WatchPage";
+import Upload from "./components/NavBar/Upload/Upload";
 
 const GlobalContainer = styled.div`
   /* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"); */
@@ -22,7 +23,7 @@ const GlobalContainer = styled.div`
 
   /* $breakpointMedium: 1224px;
   $breakpointSmall: 520px; */
-
+  /*  */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -50,9 +51,7 @@ const MainFrame = ({ children }) => {
           toggleSidePanel={toggleSidePanel}
           handleToggleSidePanel={handleToggleSidePanel}
         />
-        <Container fluid style={{ border: "3px solid blue" }}>
-          {children}
-        </Container>
+        <Container fluid>{children}</Container>
       </div>
     </>
   );
@@ -86,11 +85,16 @@ function App() {
           </MainFrame>
         </Route>
 
+        {/* <Route path="/watch"> */}
+        <Route path="/watch/:id">
+          <MainFrame>
+            <WatchPage />
+          </MainFrame>
+        </Route>
+
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/upload" component={Upload} />
-
-
+        <Route path="/Upload" component={Upload} />
 
         {/* 없는 페이지로 이동시 메인으로 이동 */}
         <Route>

@@ -1,6 +1,11 @@
+<<<<<<< HEAD
+import React from "react";
+import NavBar from "../NavBar";
+=======
 import React, { useState } from "react";
 import styled, { useTheme } from "styled-components";
 import { Form, Button } from "react-bootstrap";
+>>>>>>> master
 
 import { AiOutlinePlus } from "react-icons/ai";
 import DropZone from "react-dropzone";
@@ -22,6 +27,13 @@ const PrivateOptions = [
   { value: 1, label: "Public" },
 ];
 function Upload() {
+<<<<<<< HEAD
+  return (
+    <div>
+      <NavBar />
+      upload
+    </div>
+=======
   const [Private, setPrivate] = useState(0);
   const [VideoTitle, setVideoTitle] = useState("");
   const [VideoDesc, setVideoDesc] = useState("");
@@ -120,6 +132,7 @@ function Upload() {
         </div>
       </MainContainer>
     </>
+>>>>>>> master
   );
 }
 
