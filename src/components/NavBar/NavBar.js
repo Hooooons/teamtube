@@ -97,7 +97,7 @@ function NavBar({ handleToggleSidePanel }) {
     <MainContainer>
       <div style={{ display: "flex", alignItems: "center" }}>
         <FaBars
-          classNme="menu"
+          className="menu"
           onClick={() => handleToggleSidePanel()}
           size={26}
           style={{ marginRight: "2rem", cursor: "pointer" }}

@@ -10,6 +10,8 @@ import Login from "./components/NavBar/LoginSignUp/Login";
 import SignUp from "./components/NavBar/LoginSignUp/SignUp";
 import HotVideo from "./components/SidePanel/HotVideo/HotVideo";
 import Subscribe from "./components/SidePanel/Subscribe/Subscribe";
+import WatchPage from "./components/WatchPage/WatchPage";
+import Upload from "./components/NavBar/Upload/Upload";
 
 const GlobalContainer = styled.div`
   /* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"); */
@@ -49,9 +51,7 @@ const MainFrame = ({ children }) => {
           toggleSidePanel={toggleSidePanel}
           handleToggleSidePanel={handleToggleSidePanel}
         />
-        <Container fluid style={{ border: "3px solid blue" }}>
-          {children}
-        </Container>
+        <Container fluid>{children}</Container>
       </div>
     </>
   );
@@ -85,8 +85,16 @@ function App() {
           </MainFrame>
         </Route>
 
+        {/* <Route path="/watch"> */}
+        <Route path="/watch/:id">
+          <MainFrame>
+            <WatchPage />
+          </MainFrame>
+        </Route>
+
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/Upload" component={Upload} />
 
         {/* 없는 페이지로 이동시 메인으로 이동 */}
         <Route>
