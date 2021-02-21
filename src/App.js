@@ -10,6 +10,7 @@ import Login from "./components/NavBar/LoginSignUp/Login";
 import SignUp from "./components/NavBar/LoginSignUp/SignUp";
 import HotVideo from "./components/SidePanel/HotVideo/HotVideo";
 import Subscribe from "./components/SidePanel/Subscribe/Subscribe";
+import Upload from './components/NavBar/Upload/Upload';
 
 const GlobalContainer = styled.div`
   /* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"); */
@@ -87,6 +88,9 @@ function App() {
 
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/upload" component={Upload} />
+
+
 
         {/* 없는 페이지로 이동시 메인으로 이동 */}
         <Route>
