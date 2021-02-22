@@ -46,7 +46,7 @@ const MainFrame = ({ children }) => {
   return (
     <>
       <NavBar handleToggleSidePanel={handleToggleSidePanel} />
-      <div style={{ height: "95vh", display: "flex" }}>
+      <div style={{ minHeight: "95vh", display: "flex" }}>
         <SidePanel
           toggleSidePanel={toggleSidePanel}
           handleToggleSidePanel={handleToggleSidePanel}

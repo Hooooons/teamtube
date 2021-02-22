@@ -14,7 +14,8 @@ const MainContainer = styled.div`
     flex-direction: column;
 
     width: 250px;
-    height: 95vh;
+    /* height: 95vh; */
+    height: 100%;
     padding-top: 0.5rem;
     transition: transform 0.2s ease-in;
 

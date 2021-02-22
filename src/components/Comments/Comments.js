@@ -10,6 +10,11 @@ const CommentForm = styled.div`
   margin: 0.5rem;
 
   img {
+    width: 50px;
+    height: 50px;
+    /* object-fit: contain; */
+    object-fit: cover;
+
     border-radius: 50%;
     margin-right: 1rem;
   }
@@ -19,10 +24,24 @@ const CommentForm = styled.div`
   }
   input {
     flex-grow: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #606060;
+    color: #fff;
+    :focus {
+      outline: none;
+    }
   }
   button {
     border: 0;
     padding: 0.5rem;
+    background: #606060;
+    color: #fff;
+    letter-spacing: 0.5px;
+    :focus {
+      border: none;
+      outline: none;
+    }
   }
 `;
 const CommentList = styled.div``;
