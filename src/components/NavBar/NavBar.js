@@ -13,8 +13,10 @@ import firebase from "../../firebase";
 
 const MainContainer = styled.div`
   /* border: 2px solid red; */
+  position: fixed;
+  z-index: 1;
   width: 100%;
-  height: 5vh;
+  height: 8vh;
 
   display: flex;
   justify-content: space-between;

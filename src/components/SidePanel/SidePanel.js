@@ -14,13 +14,12 @@ const MainContainer = styled.div`
     flex-direction: column;
 
     width: 250px;
-    /* height: 95vh; */
-    height: 100%;
+    height: 100vh;
     padding-top: 0.5rem;
     transition: transform 0.2s ease-in;
 
-    position: sticky;
-    top: 5vh;
+    position: fixed;
+    top: 8vh;
     left: 0;
 
     /* a {
