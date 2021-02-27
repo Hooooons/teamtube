@@ -11,7 +11,7 @@ const MainContainer = styled.div`
 `;
 
 const VideoPlayer = styled.div`
-  border: 3px solid green;
+  /* border: 3px solid green; */
   width: 100%;
   height: 60vh;
   background: #353946;

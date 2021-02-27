@@ -6,6 +6,9 @@ import { FaBars } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdNotifications, MdApps, MdExitToApp } from "react-icons/md";
 
+import { useSelector } from "react-redux";
+import firebase from "../../firebase";
+
 // import { Form, Button } from "react-bootstrap";import { FaBars } from "react-icons/fa";
 
 const MainContainer = styled.div`
@@ -21,6 +24,9 @@ const MainContainer = styled.div`
 
   padding: 1rem 1.5rem;
   background: #212121;
+
+  /* position: fixed;
+  z-index: 1; */
 
   .menu {
     display: none;
@@ -89,17 +95,23 @@ const MainContainer = styled.div`
       display: block;
     }
     .logo {
-      display: none;
+      /* display: none; */
     }
   }
 `;
 
 function NavBar({ handleToggleSidePanel }) {
+  const user = useSelector((state) => state.userReducer.currentUser);
+
+  const handleLogout = () => {
+    firebase.auth().signOut();
+  };
+
   return (
     <MainContainer>
       <div style={{ display: "flex", alignItems: "center" }}>
         <FaBars
-          className="menu"
+          // className="menu"
           onClick={() => handleToggleSidePanel()}
           size={26}
           style={{ marginRight: "2rem", cursor: "pointer" }}
@@ -145,27 +157,32 @@ function NavBar({ handleToggleSidePanel }) {
         </button>
       </form>
 
-      <div className="iconsStyle">
-        <MdNotifications size={28} />
-        <MdApps size={28} />
-
-        {/* 유저 이미지 들어가야함 */}
-        <img
-          className="userImg"
-          alt="userImage"
-          // src="https://pbs.twimg.com/media/ByyGcEFCcAAT08c.jpg"
-          // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTOSAtdgC9phrregGGU_QkHwjKQH8I5VCNeg&usqp=CAU"
-          src="https://media.tenor.com/images/d5f2a10b8bc415dc3aa26764d77984b3/tenor.gif"
-        />
-      </div>
-
-      {/* <div>
-        <span>회원가입</span>
-
-        <span>로그인</span>
-        <MdExitToApp size={28} />
-        <span>로그아웃</span>
-      </div> */}
+      {user ? (
+        <div className="iconsStyle">
+          <MdNotifications size={28} />
+          <MdApps size={28} />
+          {/* 유저 이미지 들어가야함 */}
+          <img
+            className="userImg"
+            alt="userImage"
+            // src="https://pbs.twimg.com/media/ByyGcEFCcAAT08c.jpg"
+            // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTOSAtdgC9phrregGGU_QkHwjKQH8I5VCNeg&usqp=CAU"
+            src="https://media.tenor.com/images/d5f2a10b8bc415dc3aa26764d77984b3/tenor.gif"
+          />
+          <MdExitToApp size={28} />
+          <span onClick={handleLogout}>로그아웃</span>
+        </div>
+      ) : (
+        <div style={{ cursor: "pointer" }}>
+          <span>
+            <Link to="signup">회원가입</Link>
+          </span>
+          <span>/</span>
+          <span>
+            <Link to="login">로그인</Link>
+          </span>
+        </div>
+      )}
     </MainContainer>
   );
 }
