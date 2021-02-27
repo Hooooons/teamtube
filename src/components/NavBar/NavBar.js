@@ -2,17 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import {FaBars} from 'react-icons/fa';
+import { FaBars } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdNotifications, MdApps, MdExitToApp } from "react-icons/md";
 
 // import { Form, Button } from "react-bootstrap";import { FaBars } from "react-icons/fa";
 
-
 const MainContainer = styled.div`
   /* border: 2px solid red; */
+  position: fixed;
+  z-index: 1;
   width: 100%;
-  height: 5vh;
+  height: 8vh;
 
   display: flex;
   justify-content: space-between;

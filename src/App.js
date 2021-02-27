@@ -34,6 +34,9 @@ const GlobalContainer = styled.div`
   color: #b1bdb4;
   /* font-family: "Roboto", sans-serif; */
   /* letter-spacing: 0.1px; */
+  .pageContent {
+    padding-left: 250px;
+  }
 `;
 
 const MainFrame = ({ children }) => {
@@ -46,12 +49,21 @@ const MainFrame = ({ children }) => {
   return (
     <>
       <NavBar handleToggleSidePanel={handleToggleSidePanel} />
-      <div style={{ height: "95vh", display: "flex" }}>
+      <div
+        style={{
+          display: "flex",
+          paddingTop: "8vh",
+          position: "relative",
+          height: "100%",
+        }}
+      >
         <SidePanel
           toggleSidePanel={toggleSidePanel}
           handleToggleSidePanel={handleToggleSidePanel}
         />
-        <Container fluid>{children}</Container>
+        <Container fluid className="pageContent">
+          {children}
+        </Container>
       </div>
     </>
   );

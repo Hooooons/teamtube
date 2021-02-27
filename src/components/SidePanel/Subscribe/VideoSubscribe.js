@@ -1,34 +1,50 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import { Card } from "react-bootstrap";
 
 const MainContainer = styled.div`
-  .wrap {
+  .cardWrap {
+    display: block;
+    color: #ddd;
+    &:hover {
+      text-decoration: none;
+    }
     .card {
-      border:none;
+      border: none;
+      background: transparent;
+      .card-body {
+        .card-title {
+        }
+        .card-text {
+          span {
+            font-size: 14px;
+          }
+        }
+      }
     }
   }
 `;
 
-function VideoSubscribe(){
-  return(
+function VideoSubscribe() {
+  return (
     <MainContainer>
-
-    <a href="#" className='wrap'>
-       <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="https://placeholder.com/100px180" />
-        <Card.Body>
-          <Card.Title>내가 구독한 동영상 1</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the bulk of
-            the card's content.
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    </a> 
+      <a href="#" className="cardWrap">
+        <Card style={{ width: "" }}>
+          <Card.Img variant="top" src="https://via.placeholder.com/150X100" />
+          <Card.Body>
+            <Card.Title>내가 구독한 동영상 1</Card.Title>
+            <Card.Text>
+              <span>
+                팀튜브
+                <br />
+                조회수 10 · 1일전
+              </span>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </a>
     </MainContainer>
-
   );
- }
+}
 
- export default VideoSubscribe;
+export default VideoSubscribe;

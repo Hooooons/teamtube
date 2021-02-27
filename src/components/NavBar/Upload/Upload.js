@@ -15,6 +15,12 @@ const MainContainer = styled.div`
     width: 700px;
     margin: 0 auto;
     padding: 3rem 0;
+    .form-control {
+      background: transparent;
+      border: 1px solid #fff;
+      border-radius: 0;
+      color: #fff;
+    }
   }
 `;
 const PrivateOptions = [
@@ -39,6 +45,24 @@ function Upload() {
     setPrivate(e.currentTarget.value);
   };
 
+  const onDrop = (files) => {
+    let formData = new FormData();
+    const config = {
+      header: { "content-type": "multipark/form-data" },
+    };
+    formData.append("file", files[0]);
+    console.log(files);
+
+    // Axios.post("/api/video/uploadfiles," formData , config)
+    // .then(response => {
+    //   if(response.data.success){
+
+    //   }else {
+    //     alert('비디오 업로드를 실패했습니다.');
+    //   }
+    // })
+  };
+
   return (
     <>
       <MainContainer>
@@ -49,7 +73,7 @@ function Upload() {
           <form action="">
             <div>
               {/* dropzon */}
-              <DropZone onDrop multiple maxSize>
+              <DropZone onDrop={onDrop} multiple={false} maxSize={100000}>
                 {({ getRootProps, getInputProps }) => (
                   <div
                     style={{
@@ -76,7 +100,7 @@ function Upload() {
 
               <Form.Group>
                 <Form.Label>Private</Form.Label>
-                <Form.Control as="select" OnChange={onPrivateChange}>
+                <Form.Control as="select" onChange={onPrivateChange}>
                   {PrivateOptions.map((item, index) => (
                     <option key={index} value={item.value}>
                       {item.label}
@@ -89,8 +113,8 @@ function Upload() {
                 <Form.Control
                   type="text"
                   placeholder="Enter Title"
-                  OnChange={onTitleChange}
-                  Value={VideoTitle}
+                  onChange={onTitleChange}
+                  value={VideoTitle}
                 />
                 <Form.Text className="text-muted">
                   Enter your video title.
@@ -102,7 +126,7 @@ function Upload() {
                 <Form.Control
                   as="textarea"
                   rows={3}
-                  OnChange={onDescChange}
+                  onChange={onDescChange}
                   Value={VideoDesc}
                 />
               </Form.Group>
