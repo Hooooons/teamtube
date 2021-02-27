@@ -1,17 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import styled from "styled-components";
-import { Route, Switch, Redirect } from "react-router-dom";
+// import { Route, Switch, Redirect } from "react-router-dom";
 
 import MainPage from "./components/MainPage/MainPage";
 import NavBar from "./components/NavBar/NavBar";
 import SidePanel from "./components/SidePanel/SidePanel";
-import Login from "./components/NavBar/LoginSignUp/Login";
-import SignUp from "./components/NavBar/LoginSignUp/SignUp";
+
+// import Login from "./components/NavBar/LoginSignUp/Login";
+// import SignUp from "./components/NavBar/LoginSignUp/SignUp";
+
 import HotVideo from "./components/SidePanel/HotVideo/HotVideo";
 import Subscribe from "./components/SidePanel/Subscribe/Subscribe";
 import WatchPage from "./components/WatchPage/WatchPage";
 import Upload from "./components/NavBar/Upload/Upload";
+
+// 임시
+import Login from "./components/NavBar/LoginSignUp/Login_kks";
+import SignUp from "./components/NavBar/LoginSignUp/SignUp_hoon";
+//리덕스
+import { useDispatch } from "react-redux";
+import { clearUser, setUser } from "./redux/user_redux";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import firebase from "./firebase";
+//임시
 
 const GlobalContainer = styled.div`
   /* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"); */
@@ -42,6 +54,27 @@ const MainFrame = ({ children }) => {
   const handleToggleSidePanel = () => {
     setToggleSidePanel((value) => !value);
   };
+
+  //임시
+  let history = useHistory();
+  let dispatch = useDispatch();
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      // console.log("user", user);
+
+      // 로그인이 된 상태
+      if (user) {
+        history.push("/");
+        dispatch(setUser(user));
+      } else {
+        // 로그인이 되지 않은 상태.
+        history.push("/");
+        dispatch(clearUser());
+      }
+    });
+  }, [history, dispatch]);
+  //임시
 
   return (
     <>

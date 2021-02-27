@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Video from "../Video/Video";
+// import Video from "../Video/Video";
+import Video from "../Video/Video_kks";
 
 import { Col, Container, Row } from "react-bootstrap";
 
