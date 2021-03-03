@@ -20,7 +20,7 @@ const VideoPlayer = styled.div`
 
 function WatchPage() {
   return (
-    <MainContainer>
+    <MainContainer className="mt-4 px-4">
       <Row>
         <Col lg={8}>
           <VideoPlayer>
