@@ -47,7 +47,8 @@ const GlobalContainer = styled.div`
   /* font-family: "Roboto", sans-serif; */
   /* letter-spacing: 0.1px; */
   .pageContent {
-    padding-left: 250px;
+    //페이지 컨텐트 잠시보류
+    /* padding-left: 250px; */
   }
 `;
 
@@ -95,7 +96,10 @@ const MainFrame = ({ children }) => {
           toggleSidePanel={toggleSidePanel}
           handleToggleSidePanel={handleToggleSidePanel}
         />
-        <Container fluid className="pageContent">
+        <Container
+          // fluid
+          className="pageContent"
+        >
           {children}
         </Container>
       </div>
