@@ -8,6 +8,7 @@ import RecommendVideo from "./RecommendVideo";
 
 const MainContainer = styled.div`
   width: 100%;
+  margin: 1.5rem 1.5rem;
 `;
 
 const VideoPlayer = styled.div`
@@ -20,7 +21,7 @@ const VideoPlayer = styled.div`
 
 function WatchPage() {
   return (
-    <MainContainer className="mt-4 px-4">
+    <MainContainer>
       <Row>
         <Col lg={8}>
           <VideoPlayer>
