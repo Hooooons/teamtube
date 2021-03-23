@@ -16,7 +16,7 @@ import WatchPage from "./components/WatchPage/WatchPage";
 import Upload from "./components/NavBar/Upload/Upload";
 
 // 임시
-import Login from "./components/NavBar/LoginSignUp/Login_kks";
+import Login from "./components/NavBar/LoginSignUp/Login_hoon";
 import SignUp from "./components/NavBar/LoginSignUp/SignUp_hoon";
 //리덕스
 import { useDispatch } from "react-redux";
@@ -63,21 +63,23 @@ const MainFrame = ({ children }) => {
   let history = useHistory();
   let dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   firebase.auth().onAuthStateChanged((user) => {
-  //     // console.log("user", user);
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      // console.log("user", user);
 
-  //     // 로그인이 된 상태
-  //     if (user) {
-  //       history.push("/");
-  //       dispatch(setUser(user));
-  //     } else {
-  //       // 로그인이 되지 않은 상태.
-  //       history.push("/");
-  //       dispatch(clearUser());
-  //     }
-  //   });
-  // }, [history, dispatch]);
+      // 로그인이 된 상태
+      if (user) {
+        history.push("/");
+        dispatch(setUser(user));
+      } else {
+        // 로그인이 되지 않은 상태.
+
+        // 테스트중-
+        // history.push("/");
+        dispatch(clearUser());
+      }
+    });
+  }, [history, dispatch]);
   //임시
 
   return (

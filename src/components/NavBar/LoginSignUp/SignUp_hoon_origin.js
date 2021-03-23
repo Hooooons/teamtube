@@ -146,53 +146,73 @@ const MainLocation = styled.div`
 `;
 
 function SignUp() {
-  const { register, watch, errors, handleSubmit } = useForm();
+  const { register, watch, errors, handleSubmit } = useForm({
+    // {mode: 'onChange'}를 빼면 submit후에 경고가 뜸
+    mode: "onChange",
+  });
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [loading, setLoading] = useState(false);
 
   const password = useRef();
   password.current = watch("password");
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     console.log("data", data);
 
-    try {
-      setLoading(true);
-      let createdUser = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(data.email, data.password);
-
-      console.log("createdUser", createdUser);
-
-      await createdUser.user.updateProfile({
-        displayName: data.name,
-        photoURL: `http://gravatar.com/avatar/${md5(
-          createdUser.user.email
-        )}?d=identicon`,
-      });
-
-      //firebase 데이터베이스에 저장해주기
-      await firebase.database().ref("users").child(createdUser.user.uid).set({
-        //데이터베이스 child 이름에 email을 사용하고 싶지만
-        // 특수문자'@'때문에 불가능. uid대신 쓸만한 것 생각해보기
-        // 겹치지 않는(유니크한) 걸로 - 일단은 uid로 사용
-
-        email_Id: createdUser.user.email,
-        name: createdUser.user.displayName,
-        image: createdUser.user.photoURL,
-        phoneNumber: data.phone,
-      });
-
-      setLoading(false);
-    } catch (error) {
-      setErrorFromSubmit(error.message);
-      setLoading(false);
-      setTimeout(() => {
-        setErrorFromSubmit("");
-      }, 10000);
-    }
+    // let createdUser = await firebase.auth().createUserWithEmailAndPassword()
   };
 
+  // const onSubmit = async (data) => {
+  //   // console.log("data", data);
+
+  //   try {
+  //     //유저생성
+  //     setLoading(true);
+  //     let createdUser = await firebase
+  //       .auth()
+  //       .createUserWithEmailAndPassword(data.email, data.password);
+
+  //     console.log("createdUser", createdUser);
+
+  //     await createdUser.user.updateProfile({
+  //       displayName: data.name,
+  //       photoURL: `http://gravatar.com/avatar/${md5(
+  //         createdUser.user.email
+  //       )}?d=identicon`,
+  //     });
+
+  //     //firebase 데이터베이스에 저장해주기
+  //     await firebase.database().ref("users").child(createdUser.user.uid).set({
+  //       name: createdUser.user.displayName,
+  //       image: createdUser.user.photoURL,
+  //     });
+
+  //     setLoading(false);
+  //   } catch (error) {
+  //     setErrorFromSubmit(error.message);
+  //     setLoading(false);
+  //     setTimeout(() => {
+  //       setErrorFromSubmit("");
+  //     }, 10000);
+  //   }
+  // };
+
+  // const user = useSelector((state) => state.user.currentUser);
+
+  // if (user) {
+  //   return (
+  //     <div
+  //       style={{
+  //         fontSize: "1.5rem",
+  //         paddingTop: "5rem",
+  //         paddingBottom: "1rem",
+  //         marginLeft: "1rem",
+  //       }}
+  //     >
+  //       이미 로그인 된 상태입니다
+  //     </div>
+  //   );
+  // } else {
   return (
     <MainLocation>
       <div className="auth-wrapper">
@@ -268,9 +288,6 @@ function SignUp() {
             {errors.phone && errors.phone.type === "maxLength" && (
               <p>핸드폰 번호의 길이가 초과되었습니다</p>
             )}
-            {errors.phone && errors.phone.type === "pattern" && (
-              <p>정확한 핸드폰 번호를 입력해 주세요(띄어쓰기X)</p>
-            )}
           </div>
           <input
             name="phone"
@@ -290,6 +307,7 @@ function SignUp() {
       </div>
     </MainLocation>
   );
+  // }
 }
 
 export default SignUp;

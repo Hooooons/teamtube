@@ -100,15 +100,9 @@ const MainContainer = styled.div`
   }
 `;
 
-function NavBar({ handleToggleSidePanel }) {
-  const user = useSelector((state) => state.userReducer.currentUser);
-
-  const handleLogout = () => {
-    firebase.auth().signOut();
-  };
-
+const LeftSideAndSearch = ({ handleToggleSidePanel }) => {
   return (
-    <MainContainer>
+    <>
       <div style={{ display: "flex", alignItems: "center" }}>
         <FaBars
           // className="menu"
@@ -141,6 +135,7 @@ function NavBar({ handleToggleSidePanel }) {
         </Link>
       </div>
 
+      {/* 부트스트랩은 스타일이 안맞음 */}
       {/* <Form className="formStyle">
         <Form.Group controlId="Search">
           <Form.Control className="inputStyle" type="text" placeholder="검색" />
@@ -156,8 +151,24 @@ function NavBar({ handleToggleSidePanel }) {
           <AiOutlineSearch size={22} />
         </button>
       </form>
+    </>
+  );
+};
 
-      {user ? (
+function NavBar() {
+  const user = useSelector((state) => state.userReducer.currentUser);
+
+  // console.log("user", user.displayName);
+
+  const handleLogout = () => {
+    firebase.auth().signOut();
+  };
+
+  if (user) {
+    return (
+      <MainContainer>
+        <LeftSideAndSearch />
+
         <div className="iconsStyle">
           <MdNotifications size={28} />
           <MdApps size={28} />
@@ -172,7 +183,13 @@ function NavBar({ handleToggleSidePanel }) {
           <MdExitToApp size={28} />
           <span onClick={handleLogout}>로그아웃</span>
         </div>
-      ) : (
+      </MainContainer>
+    );
+  } else {
+    return (
+      <MainContainer>
+        <LeftSideAndSearch />
+
         <div style={{ cursor: "pointer" }}>
           <span>
             <Link to="signup">회원가입</Link>
@@ -182,9 +199,9 @@ function NavBar({ handleToggleSidePanel }) {
             <Link to="login">로그인</Link>
           </span>
         </div>
-      )}
-    </MainContainer>
-  );
+      </MainContainer>
+    );
+  }
 }
 
 export default NavBar;
